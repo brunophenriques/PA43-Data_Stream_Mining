@@ -1,7 +1,7 @@
 
 import pandas as pd
 import time
-WARMUP_SIZE = 24 * 30  # 24 hours per day, 30 days per month, so the first 720 hours of data are used for warmup and not for evaluation
+WARMUP_SIZE = 24 * 30 * 6  # 24 hours per day, 30 days per month, so the first 720 hours of data are used for warmup and not for evaluation
 
 FEATURES_A = [
     "temperature_lag1",
@@ -228,7 +228,7 @@ results_df = results_df[
 ]
 
 results_df.to_csv(
-    "results/metrics.csv",
+    "results/metrics4320.csv",
     index=False
 )
 
