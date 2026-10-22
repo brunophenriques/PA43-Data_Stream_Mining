@@ -1,0 +1,3 @@
+city,rows,missing_weather_values,nonfinite_weather_values,duplicate_rows,invalid_humidity,negative_precipitation,negative_wind,invalid_timestamps,duplicate_timestamps,missing_hours,unexpected_timestamps,chronological,non_hourly_steps
+Faro,43824,0,0,0,0,0,0,0,0,0,0,True,0
+Angra,43824,0,0,0,0,0,0,0,0,0,0,True,0

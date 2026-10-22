@@ -1,0 +1,7 @@
+Python 3.12.14
+pandas==3.0.6
+numpy==2.5.4
+matplotlib==3.11.2
+tzdata==2026.5
+ipykernel==7.4.0
+nbclient==0.11.0
