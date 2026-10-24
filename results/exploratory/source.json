@@ -1,0 +1,5 @@
+{
+  "prediction_store": "../final/predictions",
+  "warmup": "different scoring starts; 30 days selected",
+  "calendar_and_transitions": "2022-01-01 through 2025-12-31 UTC; diagnostic interval only"
+}

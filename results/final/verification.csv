@@ -1,0 +1,8 @@
+check,passed
+"30 complete, aligned histories from one current run",True
+Binary labels match raw T1 targets; valid model timings,True
+"20 required combinations with 43,104 final scored hours each",True
+Warm-up boundaries and metric reconstruction verified,True
+Monthly coverage and undefined-metric display policy verified,True
+"Calendar comparison uses the same 35,064 common-interval hours",True
+All transition diagnostics and confusion reconstructions verified,True

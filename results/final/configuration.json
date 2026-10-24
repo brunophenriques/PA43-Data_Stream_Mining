@@ -1,0 +1,253 @@
+{
+  "complete": true,
+  "run_id": "9156eef9-630d-493b-ab51-2728c4cbe0c0",
+  "created_at_utc": "2026-10-24T12:42:00.833865+00:00",
+  "configuration": {
+    "schema_version": 1,
+    "seed": 42,
+    "protocol": "predict -> evaluate -> learn from first eligible hour; scoring starts after 30 raw-calendar days",
+    "raw_start": "2021-01-01T00:00:00+00:00",
+    "raw_end": "2025-12-31T23:00:00+00:00",
+    "feature_history_hours": 24,
+    "final_scoring_start": "2021-01-31T00:00:00+00:00",
+    "common_exploratory_start": "2022-01-01T00:00:00+00:00",
+    "features": {
+      "A": [
+        "temperature_lag1",
+        "humidity_lag1",
+        "precipitation_lag1",
+        "wind_lag1"
+      ],
+      "B": [
+        "temperature_lag1",
+        "humidity_lag1",
+        "precipitation_lag1",
+        "wind_lag1",
+        "temperature_delta",
+        "humidity_mean_6h",
+        "precipitation_std_6h",
+        "rain_events_24h"
+      ],
+      "B_calendar": [
+        "temperature_lag1",
+        "humidity_lag1",
+        "precipitation_lag1",
+        "wind_lag1",
+        "temperature_delta",
+        "humidity_mean_6h",
+        "precipitation_std_6h",
+        "rain_events_24h",
+        "local_hour_sin",
+        "local_hour_cos",
+        "annual_phase_sin",
+        "annual_phase_cos"
+      ]
+    },
+    "target": "precipitation >= 0.1 mm; class 1 = rain",
+    "models": {
+      "GaussianNB": {},
+      "LogisticRegression": {
+        "optimizer": [
+          "river.optim.sgd.SGD",
+          {
+            "lr": [
+              "river.optim.schedulers.Constant",
+              {
+                "learning_rate": 0.01
+              }
+            ]
+          }
+        ],
+        "loss": [
+          "river.optim.losses.Log",
+          {
+            "weight_pos": 1.0,
+            "weight_neg": 1.0
+          }
+        ],
+        "l2": 0.0,
+        "l1": 0.0,
+        "intercept_init": 0.0,
+        "intercept_lr": [
+          "river.optim.schedulers.Constant",
+          {
+            "learning_rate": 0.01
+          }
+        ],
+        "clip_gradient": 1000000000000.0,
+        "initializer": [
+          "river.optim.initializers.Zeros",
+          {}
+        ]
+      },
+      "HoeffdingTree": {
+        "grace_period": 200,
+        "max_depth": 980,
+        "split_criterion": "info_gain",
+        "delta": 1e-07,
+        "tau": 0.05,
+        "leaf_prediction": "nba",
+        "nb_threshold": 0,
+        "nominal_attributes": null,
+        "splitter": [
+          "river.tree.splitter.gaussian_splitter.GaussianSplitter",
+          {
+            "n_splits": 10
+          }
+        ],
+        "binary_split": false,
+        "min_branch_fraction": 0.01,
+        "max_share_to_split": 0.99,
+        "max_size": 100.0,
+        "memory_estimate_period": 1000000,
+        "stop_mem_management": false,
+        "remove_poor_attrs": false,
+        "merit_preprune": true
+      },
+      "OnlineBagging": {
+        "model": [
+          "river.tree.hoeffding_tree_classifier.HoeffdingTreeClassifier",
+          {
+            "grace_period": 200,
+            "max_depth": 980,
+            "split_criterion": "info_gain",
+            "delta": 1e-07,
+            "tau": 0.05,
+            "leaf_prediction": "nba",
+            "nb_threshold": 0,
+            "nominal_attributes": null,
+            "splitter": [
+              "river.tree.splitter.gaussian_splitter.GaussianSplitter",
+              {
+                "n_splits": 10
+              }
+            ],
+            "binary_split": false,
+            "min_branch_fraction": 0.01,
+            "max_share_to_split": 0.99,
+            "max_size": 100.0,
+            "memory_estimate_period": 1000000,
+            "stop_mem_management": false,
+            "remove_poor_attrs": false,
+            "merit_preprune": true
+          }
+        ],
+        "n_models": 10,
+        "seed": 42
+      },
+      "AdaptiveRandomForest": {
+        "n_models": 10,
+        "max_features": "sqrt",
+        "lambda_value": 6,
+        "metric": [
+          "river.metrics.accuracy.Accuracy",
+          {
+            "cm": [
+              "river.metrics.confusion.ConfusionMatrix",
+              {
+                "classes": []
+              }
+            ]
+          }
+        ],
+        "disable_weighted_vote": false,
+        "drift_detector": [
+          "river.drift.adwin.ADWIN",
+          {
+            "delta": 0.001,
+            "clock": 32,
+            "max_buckets": 5,
+            "min_window_length": 5,
+            "grace_period": 10
+          }
+        ],
+        "warning_detector": [
+          "river.drift.adwin.ADWIN",
+          {
+            "delta": 0.01,
+            "clock": 32,
+            "max_buckets": 5,
+            "min_window_length": 5,
+            "grace_period": 10
+          }
+        ],
+        "grace_period": 50,
+        "max_depth": 980,
+        "split_criterion": "info_gain",
+        "delta": 0.01,
+        "tau": 0.05,
+        "leaf_prediction": "nba",
+        "nb_threshold": 0,
+        "nominal_attributes": null,
+        "splitter": null,
+        "binary_split": false,
+        "min_branch_fraction": 0.01,
+        "max_share_to_split": 0.99,
+        "max_size": 100.0,
+        "memory_estimate_period": 2000000,
+        "stop_mem_management": false,
+        "remove_poor_attrs": false,
+        "merit_preprune": true,
+        "seed": 42
+      }
+    },
+    "fallback": "class 0 when predict_one returns None; every occurrence flagged",
+    "metric_policy": "fixed labels [0,1]; zero undefined ratios in aggregate metrics; display columns mask undefined rates and single-class Macro-F1",
+    "time_zones": {
+      "Faro": "Europe/Lisbon",
+      "Angra": "Atlantic/Azores"
+    },
+    "versions": {
+      "python": "3.13.7",
+      "river": "0.26.1",
+      "pandas": "3.0.6",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "matplotlib": "3.11.2",
+      "nbformat": "5.11.1",
+      "nbclient": "0.11.0",
+      "ipykernel": "7.4.0"
+    },
+    "effective_tree_depth": 980,
+    "sha256": {
+      "src\\stream_analysis.py": "d748f87816e16a23a3f9044cb558539cd08fce6ded20477ed1eb9e5e2239abdf",
+      "src\\features.py": "c23fa83bdd96a9d999a397a1f52dd81194fb1486a354b8116ed922d6733e30dd",
+      "src\\experiment.py": "6e05a81ddd489eccd0987a535e54584fc9eaa399e20fb4237e59f811f177e9bb",
+      "src\\prepare_data.py": "40ec227c3be980980c4bfbbdfd02b9803f2c70109aed60ba8498582e64b845e7",
+      "data\\raw\\faro_2021_2025.csv": "5ef255917a675d57a351d742abf1549420ee3372c6a4c0d1db4ce53afc0c8693",
+      "data\\raw\\angra_2021_2025.csv": "6b2146fc2df9f193fc822923641444ffcdc5fa860343738d46efaf78b0567a85"
+    }
+  },
+  "prediction_files": {
+    "Faro_A_GaussianNB.csv.gz": "10d7ce7a36afcc57fe2e5e8149c3f281094afe56ec115ef0034ecf7769feaa65",
+    "Faro_A_LogisticRegression.csv.gz": "23d1cd7818f4f2992fd9c8566c73cce48f67a336f10b727e8104873820e58fcd",
+    "Faro_A_HoeffdingTree.csv.gz": "7d37e41c946700c10d9577417a94e703c1ff9677f909fad947ead8d5f04313a3",
+    "Faro_A_OnlineBagging.csv.gz": "2e79e8b60826e85cb3840312d203becebdba0ffe1a25f42c6fbed918ca15b2a4",
+    "Faro_A_AdaptiveRandomForest.csv.gz": "fab939ba00cb00e0a627b3dddf8a0cdddaefdac93e94f66637e84194dc74b01b",
+    "Faro_B_GaussianNB.csv.gz": "041ae4cbe047b515352044e6464bce06a22b726aae319d34790811049a1df43b",
+    "Faro_B_LogisticRegression.csv.gz": "f297d399ca0159cfa956086b0f25f653098578fe4fadcd640d3f58ee53d6173c",
+    "Faro_B_HoeffdingTree.csv.gz": "9806f92a958faf5543bffc1c207741bba7176cae20f1ffd0e57e05c9e4893712",
+    "Faro_B_OnlineBagging.csv.gz": "d71411390ed912eb809d2114c44d7c25a8b8dad75e2c3c9229fdad528d8dc718",
+    "Faro_B_AdaptiveRandomForest.csv.gz": "13c01a3bfd40e8b85154b270404673403c5955567df28d969f7d49540f5fcd85",
+    "Faro_B_calendar_GaussianNB.csv.gz": "796d51e5d7aeae606f43704fff2ad58c71c837c8b004a00b3da2a03acea68a99",
+    "Faro_B_calendar_LogisticRegression.csv.gz": "3c3c74714720fb76fd2f0580b95613f47ed7c103cd6d834e72b5217e8e0532f7",
+    "Faro_B_calendar_HoeffdingTree.csv.gz": "c548f1832c35fa06019e66091a2ff09505ac68d9aa02d3a1e4251b824c1f4a67",
+    "Faro_B_calendar_OnlineBagging.csv.gz": "1d856b05d26f3bc3fd8dce20ec6fae6d460fb0d8acac424adf7b62e6dfe88fcc",
+    "Faro_B_calendar_AdaptiveRandomForest.csv.gz": "cf08057649f762b0881f44dc4e488955b789b2abc6e123930534cfca25452f9a",
+    "Angra_A_GaussianNB.csv.gz": "3d0b9d3b3327c2eaf2aba59d208d92c917adc4043ced4a1d36782ee124597be9",
+    "Angra_A_LogisticRegression.csv.gz": "d3b65964ee1f632a46f6db827117f41ea6943a3b4e36f9ca5af9356b7b556873",
+    "Angra_A_HoeffdingTree.csv.gz": "c9248e07568f7a10756e954b0e13f250cf0f77a1741d3454a362bed9c6ef93ed",
+    "Angra_A_OnlineBagging.csv.gz": "ea325866339f93287853a76e7ab4c067b23983276be5f9872c854bbcfce7fbad",
+    "Angra_A_AdaptiveRandomForest.csv.gz": "3931d9592c362c23121a92aab4b631b3e1e948d3d7464382bce234d45a092ffb",
+    "Angra_B_GaussianNB.csv.gz": "6fc8cf0aa5330f4e8a3e3cbbef5f34a6da5c4bb5dee8de42c7479f04f8a742f8",
+    "Angra_B_LogisticRegression.csv.gz": "9c2a3d25b56e63a6e1901c8036e58b1a98616f8c4d3a64a7f9b860209286140d",
+    "Angra_B_HoeffdingTree.csv.gz": "888a1ae578a0ae5971277568c8727bd222d3b0ce7cf342fe0bfae23e1233f0f9",
+    "Angra_B_OnlineBagging.csv.gz": "f3227e788623f57351f51179ef675328e7cb56b9efd5ce250eb6e84b83342d20",
+    "Angra_B_AdaptiveRandomForest.csv.gz": "84569330b08562ef72c1c74d25ce138ee8946fbd2b85da693d2019bcae3999b9",
+    "Angra_B_calendar_GaussianNB.csv.gz": "3ad51e6ce0529b1fcbc840e981917d95ca1edb33ec067e27e9339d2664a74433",
+    "Angra_B_calendar_LogisticRegression.csv.gz": "0ffb2c8a7adbae489aa5f6ad391bf084e0cfd665de283ffab78777c8bac3839a",
+    "Angra_B_calendar_HoeffdingTree.csv.gz": "57f1e5ab55f8ceebcae71816d10cdda9b1bd5cda2990f69aa8e6c5e12f388d89",
+    "Angra_B_calendar_OnlineBagging.csv.gz": "a91aae47671a8cee5a652b98a58ba41ae7129b504061408c54e7e2261b834739",
+    "Angra_B_calendar_AdaptiveRandomForest.csv.gz": "2a8540ef61c3e6a184a572e867019e2018304d3443ad923e8c68ae7882518f4f"
+  }
+}

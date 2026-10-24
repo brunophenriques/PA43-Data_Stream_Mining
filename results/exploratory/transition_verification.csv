@@ -1,0 +1,9 @@
+check,passed
+"30 cached histories with the same 35,064 UTC hours",True
+"Previous observation is exactly one hour earlier, including year boundaries",True
+Every observation belongs to exactly one transition,True
+Identical target and transition support across all representations and models,True
+Global confusion matrices reconstructed from four situations,True
+Monthly partitions reconstruct every overall transition count,True
+Undefined rates remain missing; defined rates match their denominators,True
+FN and FP contributions use their separate total-error denominators,True

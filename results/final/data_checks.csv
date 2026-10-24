@@ -1,0 +1,3 @@
+city,raw_hours,feature_history_hours,eligible_hours,first_prediction,last_prediction,rain_hours,rain_rate,quality_checks_passed,representations_aligned
+Faro,43824,24,43800,2021-01-02 00:00:00+00:00,2025-12-31 23:00:00+00:00,3876,0.0884931506849315,True,True
+Angra,43824,24,43800,2021-01-02 00:00:00+00:00,2025-12-31 23:00:00+00:00,17023,0.38865296803652966,True,True

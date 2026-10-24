@@ -1,0 +1,496 @@
+{
+  "cross_process_check": {
+    "combinations": 30,
+    "observations_each": 720,
+    "independent_processes": 2,
+    "global_and_hash_seeds": [
+      1,
+      99
+    ],
+    "recursion_limits": [
+      2000,
+      3000
+    ],
+    "model_seed": 42,
+    "compared": "predictions, fallbacks, outcomes, four scores and confusion counts; excludes timings",
+    "identical": true,
+    "reference_digests_and_metrics": {
+      "Angra/A/AdaptiveRandomForest": {
+        "metrics": {
+          "accuracy": 0.8472222222222222,
+          "fallback_count": 1,
+          "fn": 56,
+          "fp": 54,
+          "macro_f1": 0.8459275859654037,
+          "precision": 0.8622448979591837,
+          "recall": 0.8578680203045685,
+          "tn": 272,
+          "tp": 338
+        },
+        "sha256": "f512db8f539572233d5bc41982cb34c123775057e47da7ee8039f069000ae11b"
+      },
+      "Angra/A/GaussianNB": {
+        "metrics": {
+          "accuracy": 0.8541666666666666,
+          "fallback_count": 1,
+          "fn": 70,
+          "fp": 35,
+          "macro_f1": 0.8538596704883523,
+          "precision": 0.9025069637883009,
+          "recall": 0.8223350253807107,
+          "tn": 291,
+          "tp": 324
+        },
+        "sha256": "65cf09dc2a6d7398977e521e229622581b40c7d8ebed3b5a899d4639aed2f4b4"
+      },
+      "Angra/A/HoeffdingTree": {
+        "metrics": {
+          "accuracy": 0.8583333333333333,
+          "fallback_count": 1,
+          "fn": 56,
+          "fp": 46,
+          "macro_f1": 0.8574080258467369,
+          "precision": 0.8802083333333334,
+          "recall": 0.8578680203045685,
+          "tn": 280,
+          "tp": 338
+        },
+        "sha256": "04e7ee2efb95a1acbaac7366b90f5def44f1cbf5040dc5100ec4a13adf0bb265"
+      },
+      "Angra/A/LogisticRegression": {
+        "metrics": {
+          "accuracy": 0.8638888888888889,
+          "fallback_count": 0,
+          "fn": 50,
+          "fp": 48,
+          "macro_f1": 0.8627354856782687,
+          "precision": 0.8775510204081632,
+          "recall": 0.8730964467005076,
+          "tn": 278,
+          "tp": 344
+        },
+        "sha256": "7d3e07306d3ffff2b49d41b7f2df12e0643364c3acb4b30d8f2615d3d9698aec"
+      },
+      "Angra/A/OnlineBagging": {
+        "metrics": {
+          "accuracy": 0.8472222222222222,
+          "fallback_count": 1,
+          "fn": 60,
+          "fp": 50,
+          "macro_f1": 0.8462243415994222,
+          "precision": 0.8697916666666666,
+          "recall": 0.8477157360406091,
+          "tn": 276,
+          "tp": 334
+        },
+        "sha256": "17d6af1997dd8d8398c05f4a851a95d2e2cb1486b9e88d64eecfe440b03936c1"
+      },
+      "Angra/B/AdaptiveRandomForest": {
+        "metrics": {
+          "accuracy": 0.8486111111111111,
+          "fallback_count": 1,
+          "fn": 49,
+          "fp": 60,
+          "macro_f1": 0.846766336235427,
+          "precision": 0.8518518518518519,
+          "recall": 0.8756345177664975,
+          "tn": 266,
+          "tp": 345
+        },
+        "sha256": "c06a37703f994b96a63b3c1a8fe28c5a54a73f164ece983ec53db42501269e26"
+      },
+      "Angra/B/GaussianNB": {
+        "metrics": {
+          "accuracy": 0.8180555555555555,
+          "fallback_count": 1,
+          "fn": 64,
+          "fp": 67,
+          "macro_f1": 0.8162689268133996,
+          "precision": 0.8312342569269522,
+          "recall": 0.8375634517766497,
+          "tn": 259,
+          "tp": 330
+        },
+        "sha256": "8687bb7eff1292ac8c2c4f3165908d4837cda281ebed7063b67ffa29903727a7"
+      },
+      "Angra/B/HoeffdingTree": {
+        "metrics": {
+          "accuracy": 0.8319444444444445,
+          "fallback_count": 1,
+          "fn": 47,
+          "fp": 74,
+          "macro_f1": 0.8289668711656442,
+          "precision": 0.8242280285035629,
+          "recall": 0.8807106598984772,
+          "tn": 252,
+          "tp": 347
+        },
+        "sha256": "6bb85bee7cf2f5dfff36190f0286b74ba5e8943910c98c83122fc88b81e105d6"
+      },
+      "Angra/B/LogisticRegression": {
+        "metrics": {
+          "accuracy": 0.8638888888888889,
+          "fallback_count": 0,
+          "fn": 50,
+          "fp": 48,
+          "macro_f1": 0.8627354856782687,
+          "precision": 0.8775510204081632,
+          "recall": 0.8730964467005076,
+          "tn": 278,
+          "tp": 344
+        },
+        "sha256": "3a6433a41b9ec70e9edcbc4a4a48d7fcc04ebfd6db97d3a1a885fcaba9dfbcfc"
+      },
+      "Angra/B/OnlineBagging": {
+        "metrics": {
+          "accuracy": 0.8208333333333333,
+          "fallback_count": 1,
+          "fn": 55,
+          "fp": 74,
+          "macro_f1": 0.8181786148452228,
+          "precision": 0.8208232445520581,
+          "recall": 0.8604060913705583,
+          "tn": 252,
+          "tp": 339
+        },
+        "sha256": "00164ba7558ad7b97724b76a7643981b4c161698fd345dfbcc5a1d75d90b22a0"
+      },
+      "Angra/B_calendar/AdaptiveRandomForest": {
+        "metrics": {
+          "accuracy": 0.8347222222222223,
+          "fallback_count": 1,
+          "fn": 46,
+          "fp": 73,
+          "macro_f1": 0.8317938650306749,
+          "precision": 0.8266033254156769,
+          "recall": 0.883248730964467,
+          "tn": 253,
+          "tp": 348
+        },
+        "sha256": "1613af031470fc2a33f91c4650385178124d14f6fee37c8663724d8a04ee6693"
+      },
+      "Angra/B_calendar/GaussianNB": {
+        "metrics": {
+          "accuracy": 0.8055555555555556,
+          "fallback_count": 1,
+          "fn": 73,
+          "fp": 67,
+          "macro_f1": 0.8041029547804321,
+          "precision": 0.8273195876288659,
+          "recall": 0.8147208121827412,
+          "tn": 259,
+          "tp": 321
+        },
+        "sha256": "a83a2a7a78d5b159beb331b2a7faac801275753823525a74f5d7cc168c6b67e4"
+      },
+      "Angra/B_calendar/HoeffdingTree": {
+        "metrics": {
+          "accuracy": 0.8125,
+          "fallback_count": 1,
+          "fn": 60,
+          "fp": 75,
+          "macro_f1": 0.809974761051082,
+          "precision": 0.8166259168704156,
+          "recall": 0.8477157360406091,
+          "tn": 251,
+          "tp": 334
+        },
+        "sha256": "4070c22899ea1d5bce79fd00df8f23efaf72ed790a753ab7206fe2849a1679de"
+      },
+      "Angra/B_calendar/LogisticRegression": {
+        "metrics": {
+          "accuracy": 0.8638888888888889,
+          "fallback_count": 0,
+          "fn": 50,
+          "fp": 48,
+          "macro_f1": 0.8627354856782687,
+          "precision": 0.8775510204081632,
+          "recall": 0.8730964467005076,
+          "tn": 278,
+          "tp": 344
+        },
+        "sha256": "3a6433a41b9ec70e9edcbc4a4a48d7fcc04ebfd6db97d3a1a885fcaba9dfbcfc"
+      },
+      "Angra/B_calendar/OnlineBagging": {
+        "metrics": {
+          "accuracy": 0.8083333333333333,
+          "fallback_count": 1,
+          "fn": 65,
+          "fp": 73,
+          "macro_f1": 0.8061737257717156,
+          "precision": 0.818407960199005,
+          "recall": 0.8350253807106599,
+          "tn": 253,
+          "tp": 329
+        },
+        "sha256": "a022d51c89541d02ba9a5edb5332bbc2b6dd3a8d90b5af30f1f2baed2e323765"
+      },
+      "Faro/A/AdaptiveRandomForest": {
+        "metrics": {
+          "accuracy": 0.9166666666666666,
+          "fallback_count": 1,
+          "fn": 43,
+          "fp": 17,
+          "macro_f1": 0.7313366004129456,
+          "precision": 0.6458333333333334,
+          "recall": 0.4189189189189189,
+          "tn": 629,
+          "tp": 31
+        },
+        "sha256": "30d69ee1e9cad08c3da3d0f4c63d62b6fecc248573538841d2e343ec7fd7276d"
+      },
+      "Faro/A/GaussianNB": {
+        "metrics": {
+          "accuracy": 0.9166666666666666,
+          "fallback_count": 1,
+          "fn": 36,
+          "fp": 24,
+          "macro_f1": 0.7564056297365572,
+          "precision": 0.6129032258064516,
+          "recall": 0.5135135135135135,
+          "tn": 622,
+          "tp": 38
+        },
+        "sha256": "5edda5e6039308a5e97e088ca1722d3c9a5dadce87baadc56fda2a806f764b1f"
+      },
+      "Faro/A/HoeffdingTree": {
+        "metrics": {
+          "accuracy": 0.9111111111111111,
+          "fallback_count": 1,
+          "fn": 39,
+          "fp": 25,
+          "macro_f1": 0.736691732760394,
+          "precision": 0.5833333333333334,
+          "recall": 0.47297297297297297,
+          "tn": 621,
+          "tp": 35
+        },
+        "sha256": "14f9ac27c6b41b8bcb6279ce8ef702507390c1afd8d4cb7a5b4afbef852a5dee"
+      },
+      "Faro/A/LogisticRegression": {
+        "metrics": {
+          "accuracy": 0.9402777777777778,
+          "fallback_count": 0,
+          "fn": 22,
+          "fp": 21,
+          "macro_f1": 0.8371134996922203,
+          "precision": 0.7123287671232876,
+          "recall": 0.7027027027027027,
+          "tn": 625,
+          "tp": 52
+        },
+        "sha256": "6a480948e664a94514dff0b94d5955028e1c7e981d67500dd37c76f3ed2bf135"
+      },
+      "Faro/A/OnlineBagging": {
+        "metrics": {
+          "accuracy": 0.9069444444444444,
+          "fallback_count": 1,
+          "fn": 40,
+          "fp": 27,
+          "macro_f1": 0.7261813537675607,
+          "precision": 0.5573770491803278,
+          "recall": 0.4594594594594595,
+          "tn": 619,
+          "tp": 34
+        },
+        "sha256": "92ac490901e0c0e6b7530cb4a8bcd167093794dfa10dcdc972d7e2a308001606"
+      },
+      "Faro/B/AdaptiveRandomForest": {
+        "metrics": {
+          "accuracy": 0.9208333333333333,
+          "fallback_count": 1,
+          "fn": 39,
+          "fp": 18,
+          "macro_f1": 0.7538845344255807,
+          "precision": 0.660377358490566,
+          "recall": 0.47297297297297297,
+          "tn": 628,
+          "tp": 35
+        },
+        "sha256": "eca3a009ac4b0fc0405bdc0fb8d45457ed7cb864648563d7615ef70d12e52527"
+      },
+      "Faro/B/GaussianNB": {
+        "metrics": {
+          "accuracy": 0.9041666666666667,
+          "fallback_count": 1,
+          "fn": 32,
+          "fp": 37,
+          "macro_f1": 0.7477032771150418,
+          "precision": 0.5316455696202531,
+          "recall": 0.5675675675675675,
+          "tn": 609,
+          "tp": 42
+        },
+        "sha256": "e9040ef892999bad2b22141af082d42de50cd7dc5fd38c4df371b56a80ab5d5f"
+      },
+      "Faro/B/HoeffdingTree": {
+        "metrics": {
+          "accuracy": 0.9,
+          "fallback_count": 1,
+          "fn": 35,
+          "fp": 37,
+          "macro_f1": 0.7320930232558139,
+          "precision": 0.5131578947368421,
+          "recall": 0.527027027027027,
+          "tn": 609,
+          "tp": 39
+        },
+        "sha256": "11b88dbcc5f95c8311812d2a7572754cf7100c3a7e836eb3807cce285da3057e"
+      },
+      "Faro/B/LogisticRegression": {
+        "metrics": {
+          "accuracy": 0.9375,
+          "fallback_count": 0,
+          "fn": 23,
+          "fp": 22,
+          "macro_f1": 0.8295373833988351,
+          "precision": 0.6986301369863014,
+          "recall": 0.6891891891891891,
+          "tn": 624,
+          "tp": 51
+        },
+        "sha256": "852851ba184d8194a5bf900391e00c46e2b602a7c09aeb941caf207d4f004c9e"
+      },
+      "Faro/B/OnlineBagging": {
+        "metrics": {
+          "accuracy": 0.8972222222222223,
+          "fallback_count": 1,
+          "fn": 36,
+          "fp": 38,
+          "macro_f1": 0.7246511627906977,
+          "precision": 0.5,
+          "recall": 0.5135135135135135,
+          "tn": 608,
+          "tp": 38
+        },
+        "sha256": "02aecec68f11a7151301fdac0b038830b93aa64899e7c235ec4c8957d95519de"
+      },
+      "Faro/B_calendar/AdaptiveRandomForest": {
+        "metrics": {
+          "accuracy": 0.9236111111111112,
+          "fallback_count": 1,
+          "fn": 45,
+          "fp": 10,
+          "macro_f1": 0.735913731819061,
+          "precision": 0.7435897435897436,
+          "recall": 0.3918918918918919,
+          "tn": 636,
+          "tp": 29
+        },
+        "sha256": "90d775cccc57163366ffa6306b0f8843a5077255dd452d34060310cbc33f42b6"
+      },
+      "Faro/B_calendar/GaussianNB": {
+        "metrics": {
+          "accuracy": 0.8916666666666667,
+          "fallback_count": 1,
+          "fn": 34,
+          "fp": 44,
+          "macro_f1": 0.7227433401133514,
+          "precision": 0.47619047619047616,
+          "recall": 0.5405405405405406,
+          "tn": 602,
+          "tp": 40
+        },
+        "sha256": "3c01af0ea445306cbe1530aac996a1bcdb11f7b1377215c0959005530a222890"
+      },
+      "Faro/B_calendar/HoeffdingTree": {
+        "metrics": {
+          "accuracy": 0.8930555555555556,
+          "fallback_count": 1,
+          "fn": 36,
+          "fp": 41,
+          "macro_f1": 0.7184514831573655,
+          "precision": 0.4810126582278481,
+          "recall": 0.5135135135135135,
+          "tn": 605,
+          "tp": 38
+        },
+        "sha256": "9daeb2e59a88feca0bff463d81aec3e98fc0132cd7dd1d8960be5579c0651d63"
+      },
+      "Faro/B_calendar/LogisticRegression": {
+        "metrics": {
+          "accuracy": 0.9375,
+          "fallback_count": 0,
+          "fn": 23,
+          "fp": 22,
+          "macro_f1": 0.8295373833988351,
+          "precision": 0.6986301369863014,
+          "recall": 0.6891891891891891,
+          "tn": 624,
+          "tp": 51
+        },
+        "sha256": "852851ba184d8194a5bf900391e00c46e2b602a7c09aeb941caf207d4f004c9e"
+      },
+      "Faro/B_calendar/OnlineBagging": {
+        "metrics": {
+          "accuracy": 0.8944444444444445,
+          "fallback_count": 1,
+          "fn": 35,
+          "fp": 41,
+          "macro_f1": 0.723697764133223,
+          "precision": 0.4875,
+          "recall": 0.527027027027027,
+          "tn": 605,
+          "tp": 39
+        },
+        "sha256": "1217cfe74cc3bb0555fe5923273a83eb93a16695ef0858a8c48d0bba8b6fdf05"
+      }
+    }
+  },
+  "full_history_logical_predictions_preserved": {
+    "Faro_A_GaussianNB.csv.gz": true,
+    "Faro_A_LogisticRegression.csv.gz": true,
+    "Faro_A_HoeffdingTree.csv.gz": true,
+    "Faro_A_OnlineBagging.csv.gz": true,
+    "Faro_A_AdaptiveRandomForest.csv.gz": true,
+    "Faro_B_GaussianNB.csv.gz": true,
+    "Faro_B_LogisticRegression.csv.gz": true,
+    "Faro_B_HoeffdingTree.csv.gz": true,
+    "Faro_B_OnlineBagging.csv.gz": true,
+    "Faro_B_AdaptiveRandomForest.csv.gz": true,
+    "Faro_B_calendar_GaussianNB.csv.gz": true,
+    "Faro_B_calendar_LogisticRegression.csv.gz": true,
+    "Faro_B_calendar_HoeffdingTree.csv.gz": true,
+    "Faro_B_calendar_OnlineBagging.csv.gz": true,
+    "Faro_B_calendar_AdaptiveRandomForest.csv.gz": true,
+    "Angra_A_GaussianNB.csv.gz": true,
+    "Angra_A_LogisticRegression.csv.gz": true,
+    "Angra_A_HoeffdingTree.csv.gz": true,
+    "Angra_A_OnlineBagging.csv.gz": true,
+    "Angra_A_AdaptiveRandomForest.csv.gz": true,
+    "Angra_B_GaussianNB.csv.gz": true,
+    "Angra_B_LogisticRegression.csv.gz": true,
+    "Angra_B_HoeffdingTree.csv.gz": true,
+    "Angra_B_OnlineBagging.csv.gz": true,
+    "Angra_B_AdaptiveRandomForest.csv.gz": true,
+    "Angra_B_calendar_GaussianNB.csv.gz": true,
+    "Angra_B_calendar_LogisticRegression.csv.gz": true,
+    "Angra_B_calendar_HoeffdingTree.csv.gz": true,
+    "Angra_B_calendar_OnlineBagging.csv.gz": true,
+    "Angra_B_calendar_AdaptiveRandomForest.csv.gz": true
+  },
+  "protected_data_eda_report_unchanged": {
+    "data\\raw\\angra_2021_2025.csv": true,
+    "data\\raw\\faro_2021_2025.csv": true,
+    "results\\eda\\environment.txt": true,
+    "results\\eda\\figures\\annual_and_seasonal_rain.png": true,
+    "results\\eda\\figures\\excursion_windows_by_month.png": true,
+    "results\\eda\\figures\\local_hour_rain.png": true,
+    "results\\eda\\figures\\monthly_weather_and_target.png": true,
+    "results\\eda\\figures\\rolling_rain_24h.png": true,
+    "results\\eda\\figures\\target_distribution.png": true,
+    "results\\eda\\figures\\weather_distributions.png": true,
+    "results\\eda\\tables\\annual_rain_rate.csv": true,
+    "results\\eda\\tables\\excursion_windows_by_month.csv": true,
+    "results\\eda\\tables\\excursion_window_summary.csv": true,
+    "results\\eda\\tables\\local_hour_rain_rate.csv": true,
+    "results\\eda\\tables\\monthly_means.csv": true,
+    "results\\eda\\tables\\quality_checks.csv": true,
+    "results\\eda\\tables\\rolling_rain_summary.csv": true,
+    "results\\eda\\tables\\seasonal_rain_rate.csv": true,
+    "results\\eda\\tables\\target_summary.csv": true,
+    "results\\eda\\tables\\weather_statistics.csv": true,
+    "notebooks\\eda.ipynb": true,
+    "report/main.tex": true
+  }
+}

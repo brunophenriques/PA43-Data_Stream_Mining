@@ -1,74 +1,84 @@
+"""Optional retrieval helper; imports never make network requests."""
+from pathlib import Path
 import requests
 import pandas as pd
 import time
 
-URL = "https://archive-api.open-meteo.com/v1/archive"
+ROOT = Path(__file__).resolve().parents[1]
 
-cities = {
-    "faro": (37.02, -7.93),
-    "angra": (38.65, -27.22)
-}
 
-for city, (lat, lon) in cities.items():
-    print(f"\n=== Starting {city.upper()} ===")
+def main():
+    URL = "https://archive-api.open-meteo.com/v1/archive"
 
-    city_start = time.perf_counter()
-    dfs = []
+    cities = {
+        "faro": (37.02, -7.93),
+        "angra": (38.65, -27.22)
+    }
 
-    for year in range(2021, 2026):
-        print(f"\n[{city}] Downloading {year}...")
+    for city, (lat, lon) in cities.items():
+        print(f"\n=== Starting {city.upper()} ===")
 
-        params = {
-            "latitude": lat,
-            "longitude": lon,
-            "start_date": f"{year}-01-01",
-            "end_date": f"{year}-12-31",
-            "hourly": "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m",
-            "timezone": "GMT"
-        }
+        city_start = time.perf_counter()
+        dfs = []
 
-        year_start = time.perf_counter()
+        for year in range(2021, 2026):
+            print(f"\n[{city}] Downloading {year}...")
 
-        for attempt in range(1, 6):
-            try:
-                print(f"  Attempt {attempt}/5...")
+            params = {
+                "latitude": lat,
+                "longitude": lon,
+                "start_date": f"{year}-01-01",
+                "end_date": f"{year}-12-31",
+                "hourly": "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m",
+                "timezone": "GMT"
+            }
 
-                response = requests.get(
-                    URL,
-                    params=params,
-                    timeout=120
-                )
+            year_start = time.perf_counter()
 
-                if response.status_code == 200:
-                    break
+            for attempt in range(1, 6):
+                try:
+                    print(f"  Attempt {attempt}/5...")
 
-                print(f"  HTTP {response.status_code} — retrying...")
+                    response = requests.get(
+                        URL,
+                        params=params,
+                        timeout=120
+                    )
 
-            except requests.RequestException as e:
-                print(f"  Request error: {e}")
+                    if response.status_code == 200:
+                        break
 
-            time.sleep(5)
+                    print(f"  HTTP {response.status_code} — retrying...")
 
-        else:
-            raise RuntimeError(f"Failed to download {city} {year}")
+                except requests.RequestException as e:
+                    print(f"  Request error: {e}")
 
-        df = pd.DataFrame(response.json()["hourly"])
-        dfs.append(df)
+                time.sleep(5)
 
-        elapsed = time.perf_counter() - year_start
+            else:
+                raise RuntimeError(f"Failed to download {city} {year}")
 
-        print(f"  Done {year}")
-        print(f"  Rows: {len(df):,}")
-        print(f"  Time: {elapsed:.2f}s")
+            df = pd.DataFrame(response.json()["hourly"])
+            dfs.append(df)
 
-    city_df = pd.concat(dfs, ignore_index=True)
+            elapsed = time.perf_counter() - year_start
 
-    output_file = f"{city}_2021_2025.csv"
-    city_df.to_csv(output_file, index=False)
+            print(f"  Done {year}")
+            print(f"  Rows: {len(df):,}")
+            print(f"  Time: {elapsed:.2f}s")
 
-    city_elapsed = time.perf_counter() - city_start
+        city_df = pd.concat(dfs, ignore_index=True)
 
-    print(f"\n=== Finished {city.upper()} ===")
-    print(f"Total rows: {len(city_df):,}")
-    print(f"Saved to: {output_file}")
-    print(f"Total time: {city_elapsed:.2f}s")
+        output_file = ROOT / "data" / "raw" / f"{city}_2021_2025.csv"
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        city_df.to_csv(output_file, index=False)
+
+        city_elapsed = time.perf_counter() - city_start
+
+        print(f"\n=== Finished {city.upper()} ===")
+        print(f"Total rows: {len(city_df):,}")
+        print(f"Saved to: {output_file}")
+        print(f"Total time: {city_elapsed:.2f}s")
+
+if __name__ == "__main__":
+    main()

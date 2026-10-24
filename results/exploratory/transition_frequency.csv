@@ -1,0 +1,9 @@
+city,transition,n_events,city_hours,frequency
+Faro,Rain onset,861,35064,0.024555099247091032
+Faro,Continued rain,2272,35064,0.06479580196212639
+Faro,Rain cessation,861,35064,0.024555099247091032
+Faro,Continued dry weather,31070,35064,0.8860939995436915
+Angra,Rain onset,2347,35064,0.06693474788957335
+Angra,Continued rain,11230,35064,0.3202715035363906
+Angra,Rain cessation,2348,35064,0.06696326716860598
+Angra,Continued dry weather,19139,35064,0.5458304814054301

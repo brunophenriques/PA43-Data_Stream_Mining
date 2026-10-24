@@ -1,36 +1,23 @@
-import pandas as pd
+"""Export validated, aligned A/B model inputs without training or downloading."""
+from pathlib import Path
+import sys
 
-from features import (
-    add_target,
-    add_representation_a,
-    add_representation_b,
-    save_dataset
-)
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from src.stream_analysis import ROOT, CITIES, load_streams
 
 
-# Load raw data
-faro = pd.read_csv("data/raw/faro_2021_2025.csv")
-angra = pd.read_csv("data/raw/angra_2021_2025.csv")
+def main():
+    streams, checks = load_streams()
+    output = ROOT / "data" / "processed"
+    output.mkdir(parents=True, exist_ok=True)
+    for city, slug in CITIES.items():
+        for rep in ("A", "B"):
+            streams[city][rep].to_csv(output / f"{slug}_representation_{rep.lower()}.csv", index=False)
+    print(checks.to_string(index=False))
+    print("Saved four aligned A/B input files. No model was trained.")
 
-# Parse timestamps
-faro["time"] = pd.to_datetime(faro["time"])
-angra["time"] = pd.to_datetime(angra["time"])
 
-# Add target
-faro = add_target(faro)
-angra = add_target(angra)
-
-# Build representations
-faro_a = add_representation_a(faro)
-faro_b = add_representation_b(faro)
-
-angra_a = add_representation_a(angra)
-angra_b = add_representation_b(angra)
-
-# Save processed datasets
-save_dataset(faro_a, "data/processed/faro_representation_a.csv")
-save_dataset(faro_b, "data/processed/faro_representation_b.csv")
-
-save_dataset(angra_a, "data/processed/angra_representation_a.csv")
-save_dataset(angra_b, "data/processed/angra_representation_b.csv")
-print("Processed datasets saved successfully.")
+if __name__ == "__main__":
+    main()
